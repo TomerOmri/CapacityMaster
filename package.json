@@ -1,33 +1,22 @@
 {
-  "private": true,
+  "name": "reactemailservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "build": "node packages/react-scripts/scripts/build.js",
-    "changelog": "lerna-changelog",
-    "create-react-app": "tasks/cra.sh",
-    "e2e": "tasks/e2e-simple.sh",
-    "e2e:docker": "tasks/local-test.sh",
-    "postinstall": "node bootstrap.js && cd packages/react-error-overlay/ && npm run build:prod",
-    "publish": "tasks/release.sh",
-    "start": "node packages/react-scripts/scripts/start.js",
-    "test": "node packages/react-scripts/scripts/test.js --env=jsdom",
-    "format": "prettier --trailing-comma es5 --single-quote --write 'packages/*/*.js' 'packages/*/!(node_modules)/**/*.js'",
-    "precommit": "lint-staged"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "eslint": "^4.4.1",
-    "husky": "^0.13.2",
-    "lerna": "^2.0.0",
-    "lerna-changelog": "^0.6.0",
-    "lint-staged": "^3.3.1",
-    "prettier": "1.6.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facebookincubator/create-react-app.git"
   },
-  "lint-staged": {
-    "*.js": [
-      "prettier --trailing-comma es5 --single-quote --write",
-      "git add"
-    ],
-    "yarn.lock": [
-      "git rm --cached"
-    ]
-  }
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "bugs": {
+    "url": "https://github.com/facebookincubator/create-react-app/issues"
+  },
+  "homepage": "https://github.com/facebookincubator/create-react-app#readme"
 }
