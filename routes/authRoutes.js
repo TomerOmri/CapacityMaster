@@ -16,4 +16,10 @@ module.exports = app => {
         req.logout();       // kills the cookie
         res.send(req.user);
     });
+
+    app.get('/', (req,res) => {
+        res.send({
+            'hi': 'there'
+        })
+    });
 }
