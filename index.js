@@ -11,9 +11,6 @@ require('./services/passport');
 mongoose.connect(keys.mongoURI);
 const app = express();
 
-
-
-
 // telling app we are using cookies
 app.use(
     cookieSession({
