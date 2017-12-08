@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 const User = mongoose.model('users');                   // load the users from the mongoose model.
 
-
 passport.serializeUser((user, done) => {           // generate internal indentifing, already know the user - push it to cookie
     done(null, user.id);
 });
@@ -15,15 +14,12 @@ passport.deserializeUser((id, done) => {               // take back from the coo
     .then( (user) => done(null, user) );
 });
 
-
-
-
-
                                                         // creating new instance of google strategy 2 args - object and callbac;
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientId,
     clientSecret: keys.googleClientSecret,
-    callbackURL: '/auth/google/callback'
+    callbackURL: '/auth/google/callback',
+    proxy: true
 }, (accessToken, refreshTocken, profile, done) => {
                                                   // First we initate a search (query) on all the db
                                                    // if not found we will create new 
