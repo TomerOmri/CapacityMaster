@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter , Route } from 'react-router-dom';
 import Header from './Header';
-
+import Appi from '../old/App';
 
 const Dashboard = () => <h2>Dashboard</h2>
 const SurevyNew = () => <h2>SurevyNew</h2>
@@ -13,6 +13,7 @@ const App = () => {
         <div className="container">
                 <BrowserRouter>
                     <div>
+                        <Appi />
                         <Header />
                         <Route exact={true} path="/" component={Landing} />
                         <Route exact={true} path="/dashboard" component={Dashboard} />
