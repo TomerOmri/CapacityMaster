@@ -5,9 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import App from './components/App';
 import reducers from './reducers';
 import reduxThunk from 'redux-thunk';
-
-
-
+import 'semantic-ui-css/semantic.min.css';
 
 
 // create store ( Reducer , Initial state of my application , apply middleware code )
