@@ -1,22 +1,23 @@
 import React from 'react';
-import { Grid, Button, Message, Label } from 'semantic-ui-react'
 import TeamMembers from './TeamMembers';
+import TaktCapcityTable from "./TaktCapacityTable";
+
 const TeamManager = () => {
     return(
-        <div>
-            <Grid>
-                <Grid.Row>
-<Grid.Column>
-    <h1>Team Members: </h1>
-</Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column>
-                        <TeamMembers/>
+        <div className="containerInPage">
+            <div>
+                <h2>Team Manager Space</h2>
+            </div>
 
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
+            <div className="teamManagerRow">
+                <TeamMembers/>
+            </div>
+
+            <div className="teamManagerRow">
+                <TaktCapcityTable />
+
+            </div>
+
         </div>
     )
 

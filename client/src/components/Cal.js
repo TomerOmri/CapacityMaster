@@ -1,49 +1,40 @@
 import React from 'react';
-import {Calendar, CalendarControls} from 'react-yearly-calendar';
-import { Grid, Button, Message, Label } from 'semantic-ui-react'
-import './Cal.css';
-
-function onDatePicked(date) {
-    alert(date);
-}
-
-const Cal = () => {
-    return(
-        <div>
-
-                <Grid.Row>
-                    <div>
-                        <Label as='a' color='green' tag>Work</Label>
-                    </div>
-                    <div>
-                        <Label as='a' color='red' tag>Out</Label>
-
-                    </div>
-                    <div>
-                        <Label as='a' color='purple' tag>University</Label>
-
-                    </div>
-                    <div>
-                        <Label as='a' color='blue' tag>Vacation</Label>
-
-                    </div>
-                </Grid.Row>
-                <Grid.Row>
-                    <Calendar
-                        year={2018}
-                        onPickDate={onDatePicked}/>
-                </Grid.Row>
+import DayPicker, { DateUtils } from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 
 
-                <Grid.Row floated='right'>
-                    <Button.Group floated='right'>
-                        <Button>Revert</Button>
-                        <Button.Or />
-                        <Button positive>Save</Button>
-                    </Button.Group>
-                </Grid.Row>
-        </div>
-    )
+class Cal extends React.Component {
+    constructor(props){
+        super(props);
+        this.handleDayClick = this.handleDayClick.bind(this);
+        this.state = {
+            selectedDays: [],
+        };
+    }
+
+    handleDayClick(day, { selected }) {
+        const { selectedDays } = this.state;
+        if (selected) {
+            const selectedIndex = selectedDays.findIndex(selectedDay =>
+                DateUtils.isSameDay(selectedDay, day)
+            );
+            selectedDays.splice(selectedIndex, 1);
+        } else {
+            selectedDays.push(day);
+        }
+        this.setState({ selectedDays });
+    }
+
+    render(){
+        return(
+            <div>
+                <DayPicker
+                    selectedDays={this.state.selectedDays}
+                    onDayClick={this.handleDayClick}
+                    numberOfMonths={12} />
+            </div>
+        )
+    }
 }
 
 export default Cal;

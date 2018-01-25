@@ -1,0 +1,22 @@
+.containerInPage{
+    padding: 10px;
+}
+
+.containerInPage h2{
+    text-align: center;
+}
+
+.teamMatesTable{
+    max-width: 700px;
+    margin: 0px auto;
+}
+
+.teamManagerRow{
+    margin-top: 2%;
+}
+
+
+.teamTaktTable{
+    max-width: 900px;
+    margin: 0px auto;
+}
