@@ -22,4 +22,10 @@ module.exports = app => {
             'hi': 'there'
         })
     });
+
+    app.get('/tomer' , (req,res) => {
+        res.send({
+            'hi': 'tomer'
+        })
+    })
 }
