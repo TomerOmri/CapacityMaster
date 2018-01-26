@@ -28,7 +28,7 @@ module.exports = app => {
 
     app.get('/', (req,res) => {
         res.send({
-            'hi': 'there1'
+            'hi': 'there2'
         })
     });
 
