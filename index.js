@@ -21,6 +21,24 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get(
+    '/auth/google',
+    passport.authenticate('google', {
+        scope: ['profile', 'email']
+    })
+);
+
+app.get(
+    '/auth/auth/google/callback',
+    passport.authenticate('google'),
+    (req, res) => {
+        res.send({
+            'hdi': "ho"
+        })
+    }
+);
+
 require('./routes/authRoutes')(app);
 var port = (process.env.PORT || 5000);
 app.listen(port);
