@@ -20,3 +20,8 @@
     max-width: 900px;
     margin: 0px auto;
 }
+
+.logOutStyle{
+    font-size: 10px;
+    text-underline: #0f0f10;
+}

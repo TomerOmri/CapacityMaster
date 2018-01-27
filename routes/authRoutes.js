@@ -13,7 +13,7 @@ module.exports = app => {
         '/auth/google/callback',
         passport.authenticate('google'),
         (req, res) => {
-            res.redirect('/api/current_user')
+            res.redirect('/dashboard')
         }
     );
 
@@ -23,7 +23,8 @@ module.exports = app => {
 
     app.get('/api/logout', (req,res) => {
         req.logout();       // kills the cookie
-        res.send(req.user);
+        // res.send(req.user);
+        res.redirect('/dashboard')
     });
 
     app.get('/', (req,res) => {
@@ -31,10 +32,4 @@ module.exports = app => {
             'hi': 'there2'
         })
     });
-
-    app.get('/tomer' , (req,res) => {
-        res.send({
-            'hi': 'tomer'
-        })
-    })
 }

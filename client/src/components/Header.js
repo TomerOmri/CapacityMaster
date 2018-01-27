@@ -1,15 +1,48 @@
 import React, { Component } from 'react'
 import { Menu, Button, Icon } from 'semantic-ui-react'
+import { connect } from 'react-redux';
 
 
-export default class HeadMenu extends Component {
+class HeadMenu extends Component {
+
     state = {}
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+    handleLoginWithGoogleClick = () => {
+        window.location = '/auth/google'
+    }
+
+
+
+
+    renderContent() {
+        console.log(this.props)
+        switch (this.props.auth) {
+            case null:
+                return 'Waiting for data'
+            case false:
+                return (
+                    <Button onClick={this.handleLoginWithGoogleClick} floated='right' color='google plus'>
+                        <Icon name='google plus' /> Sign in with Google Plus
+                    </Button>
+                )
+            default:
+                return (
+                    <span>
+                        {this.props.auth.displayName} <span className="logOutStyle"> <a href='/api/logout'> (Log out)</a> </span>
+                    </span>
+                )
+        }
+
+    }
+
+
+
+
     render() {
         const { activeItem } = this.state
-
+        console.log(this.props);
         return (
             <Menu stackable>
                 <Menu.Item>
@@ -45,12 +78,17 @@ export default class HeadMenu extends Component {
                         Team Management
                     </Menu.Item>
                     <Menu.Item>
-                        <Button floated='right' color='google plus'>
-                            <Icon name='google plus' /> Sign in with Google Plus
-                        </Button>
+                        {this.renderContent()}
                     </Menu.Item>
                 </Menu.Menu>
             </Menu>
         )
     }
 }
+
+
+function mapStateToProp(state){
+    return { auth: state.auth }
+}
+
+export default connect(mapStateToProp)(HeadMenu);
