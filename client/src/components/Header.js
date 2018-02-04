@@ -13,10 +13,7 @@ class HeadMenu extends Component {
         window.location = '/auth/google'
     }
 
-
-
-
-    renderContent() {
+    renderLoginContent() {
         console.log(this.props)
         switch (this.props.auth) {
             case null:
@@ -24,7 +21,7 @@ class HeadMenu extends Component {
             case false:
                 return (
                     <Button onClick={this.handleLoginWithGoogleClick} floated='right' color='google plus'>
-                        <Icon name='google plus' /> Sign in with Google Plus
+                        <Icon name='google plus' /> Sign in with Google
                     </Button>
                 )
             default:
@@ -36,8 +33,6 @@ class HeadMenu extends Component {
         }
 
     }
-
-
 
 
     render() {
@@ -78,7 +73,7 @@ class HeadMenu extends Component {
                         Team Management
                     </Menu.Item>
                     <Menu.Item>
-                        {this.renderContent()}
+                        {this.renderLoginContent()}
                     </Menu.Item>
                 </Menu.Menu>
             </Menu>
