@@ -9,6 +9,7 @@ require('./models/User');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
+var bodyParser = require('body-parser');
 const app = express();
 
 // telling app we are using cookies
@@ -18,7 +19,10 @@ app.use(
         keys: [keys.cookieKey]                      // encrypt cookie
     })
 );
-
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -40,6 +44,7 @@ app.get(
 );
 
 require('./routes/authRoutes')(app);
+require('./routes/teamRoutes')(app);
 
 
 if (process.env.NODE_ENV === 'production'){
