@@ -3,13 +3,15 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('./config/keys');
+const routes = require('./routes');
 
 // Invokes the modules when the app starts
 require('./models/User');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
-var bodyParser = require('body-parser');
+
+const bodyParser = require('body-parser');
 const app = express();
 
 // telling app we are using cookies
@@ -26,26 +28,8 @@ app.use(bodyParser.json())
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get(
-    '/auth/google',
-    passport.authenticate('google', {
-        scope: ['profile', 'email']
-    })
-);
 
-app.get(
-    '/auth/auth/google/callback',
-    passport.authenticate('google'),
-    (req, res) => {
-        res.send({
-            'hdi': "ho"
-        })
-    }
-);
-
-require('./routes/authRoutes')(app);
-require('./routes/teamRoutes')(app);
-
+app.use('/', routes);
 
 if (process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'));

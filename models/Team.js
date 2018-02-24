@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+
 const TeamSchema = new Schema({
     teamName: String,
     teamLeaderEmail: { type: String, trim: true, unique: true  },
@@ -38,13 +39,5 @@ TeamSchema.methods.removeFromMemberFromTeam = function(userEmail){
 
 
 
-
-
-
-
-
-
-
-
 // put on mongoose model new collection named users with type userSchema
-mongoose.model('teams', TeamSchema);
+export const Team = mongoose.model('team' , TeamSchema);
