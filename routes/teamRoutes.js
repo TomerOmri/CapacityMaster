@@ -1,5 +1,7 @@
-const expressRouter = require ('express').Router(),
-    mongoose = require ('mongoose');
+const expressRouter = require ('express').Router();
+const mongoose = require('mongoose');
+require('../models/Team');
+const Team = mongoose.model('teams');
 
 async function getHello(req, res) {
     res.send({
@@ -8,7 +10,20 @@ async function getHello(req, res) {
 }
 
 async function createNewTeam(req, res){
-    res.send("create new team")
+    console.log(req.body);
+    const newTeam = new Team({
+        teamName: req.body.teamName,
+        teamLeaderEmail: req.body.teamLeaderEmail
+    });
+
+    try {
+        const team = await newTeam.save();
+    } catch (e) {
+
+    }
+
+    console.log('New Team created successfully');
+    return res.send({ Team: newTeam, status: 'ok' });
 }
 
 async function addUserToTeam(req, res){
@@ -18,6 +33,7 @@ async function addUserToTeam(req, res){
 async function removeUserFromTeam(req, res){
     res.send("remove user to team")
 }
+
 
 
 expressRouter.get('/hi', getHello);

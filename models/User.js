@@ -18,7 +18,7 @@ const userSchema = new Schema({
     googleId: String,
     displayName: String,
     email: { type: String, trim: true, unique: true },
-    isTeamLeader: {type: Boolean, default: false},
+    isTeamLeader: { type: Boolean, default: false },
     teamLeaderTeamId: String,
     isSuperAdmin: { type: Boolean, default: false },
     datesReported: [],

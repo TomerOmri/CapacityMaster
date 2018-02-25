@@ -9,6 +9,8 @@ const routes = require('./routes');
 require('./models/User');
 require('./services/passport');
 
+mongoose.Promise = Promise;
+
 mongoose.connect(keys.mongoURI);
 
 const bodyParser = require('body-parser');
