@@ -1,14 +1,8 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
+import apiReducer from './apiReducer';
 
 export default combineReducers({
-    auth: authReducer
+    user: authReducer,
+    api: apiReducer
 });
-
-
-// function todoApp(state = {}, action) {
-//     return {
-//         visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-//         todos: todos(state.todos, action)
-//     }
-// }

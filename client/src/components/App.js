@@ -19,7 +19,8 @@ class App extends React.Component{
     }
 
     componentDidMount(){
-        this.props.fetchUser();
+        const { fetchUser } = this.props;
+        fetchUser();
     }
 
     render(){

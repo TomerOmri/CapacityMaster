@@ -1,16 +1,40 @@
 import React from 'react';
 import { Icon, Label, Modal, Button, List, Form, Input, Table, Header } from 'semantic-ui-react';
-
+import { connect } from 'react-redux';
+import * as actions from '../actions'
 
 class TeamMembers extends React.Component {
     constructor(props){
         super(props);
     }
 
+    componentDidMount(){
+        const { fetchTeamMembers, user } = this.props;
+        // fetchTeamMembers(user._id);
+    }
+
     state = { open: false }
 
-    show = size => () => this.setState({ size, open: true })
-    close = () => this.setState({ open: false })
+    show = size => () => this.setState({ size, open: true });
+    close = () => this.setState({ open: false });
+
+    renderTeamMembers = () => {
+        console.log(this.props);
+        switch (this.props.teamMembersList) {
+            case null:
+                return 'Waiting for data';
+            case false:
+                return (
+                    <div>nothing yet</div>
+                );
+            default:
+                return (
+                    <span>
+                        {this.props.teamMembersList}
+                    </span>
+                )
+        }
+    };
 
     render() {
         const { open, size } = this.state
@@ -84,9 +108,21 @@ class TeamMembers extends React.Component {
                         <Button positive icon='checkmark' labelPosition='right' content='Add New Member' />
                     </Modal.Actions>
                 </Modal>
+
+                <div>
+                    {this.renderTeamMembers()}
+                </div>
             </div>
         );
     }
 }
 
-export default  TeamMembers;
+
+function mapStateToProp(state){
+    return { teamMembersList: state.api,
+    user: state.user
+    }
+}
+
+
+export default connect(mapStateToProp, actions)(TeamMembers);

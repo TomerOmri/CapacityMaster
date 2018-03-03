@@ -5,29 +5,29 @@ import { connect } from 'react-redux';
 
 class HeadMenu extends Component {
 
-    state = {}
+    state = {};
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     handleLoginWithGoogleClick = () => {
         window.location = '/auth/google'
-    }
+    };
 
     renderLoginContent() {
-        console.log(this.props)
-        switch (this.props.auth) {
+        console.log(this.props);
+        switch (this.props.user) {
             case null:
-                return 'Waiting for data'
+                return 'Waiting for data';
             case false:
                 return (
                     <Button onClick={this.handleLoginWithGoogleClick} floated='right' color='google plus'>
                         <Icon name='google plus' /> Sign in with Google
                     </Button>
-                )
+                );
             default:
                 return (
                     <span>
-                        {this.props.auth.displayName} <span className="logOutStyle"> <a href='/api/logout'> (Log out)</a> </span>
+                        {this.props.user.displayName} <span className="logOutStyle"> <a href='/api/logout'> (Log out)</a> </span>
                     </span>
                 )
         }
@@ -83,7 +83,7 @@ class HeadMenu extends Component {
 
 
 function mapStateToProp(state){
-    return { auth: state.auth }
+    return { user: state.user }
 }
 
 export default connect(mapStateToProp)(HeadMenu);
